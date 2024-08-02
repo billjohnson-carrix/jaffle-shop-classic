@@ -1,31 +1,42 @@
 version: 2
 
-models:
-  - name: stg_customers
+seeds:
+  - name: raw_customers
+    description: one unique customer per row
     columns:
-      - name: customer_id
-        tests:
+      - name: id
+        decription: primary key
+        data_tests:
           - unique
           - not_null
 
-  - name: stg_orders
+  - name: raw_orders
+    description: one order per row
     columns:
-      - name: order_id
-        tests:
+      - name: id
+        description: primary key
+        data_tests:
           - unique
           - not_null
       - name: status
-        tests:
+        description: "{{ doc('order_status') }}"
+        data_tests:
           - accepted_values:
-              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+              values: ['placed', 'shipped', 'completed', 'return_pending','returned']
+      - name: user_id
+        data_tests:
+          - relationships:
+              to: ref('raw_customers')
+              field: id
 
-  - name: stg_payments
+  - name: raw_payments
+    description: one payment per row
     columns:
-      - name: payment_id
-        tests:
+      - name: id
+        data_tests:
           - unique
           - not_null
       - name: payment_method
-        tests:
+        data_tests:
           - accepted_values:
               values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']

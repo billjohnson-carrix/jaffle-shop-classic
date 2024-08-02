@@ -24,3 +24,14 @@ models:
       materialized: table
       staging:
         materialized: view
+
+seeds:
+  jaffle_shop:
+    enabled: true
+    carrix_bill: seeds
+    raw_customers:
+      enabled: true
+    raw_orders:
+      enabled: true
+    raw_payments:
+      enabled: true
