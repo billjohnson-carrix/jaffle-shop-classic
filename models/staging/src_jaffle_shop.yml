@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: analytics_dev
+    schema: carrix_bill
+    tables:
+      - name: customers
+      - name: orders
