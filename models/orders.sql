@@ -1,4 +1,6 @@
-{% set payment_methods = ['credit_card', 'coupon', 'bank_transfer', 'gift_card'] %}
+{% set payment_methods = dbt_utils.get_column_values(table=ref('stg_payments'), column='payment_method') %}
+
+{# {% set payment_methods = dbt_utils.get_column_values(table=ref('stg_payments'), column = 'payment_method') %} #}
 
 with orders as (
 
