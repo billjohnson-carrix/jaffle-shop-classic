@@ -5,3 +5,4 @@ logs/
 **/.DS_Store
 analyses/scratch.sql
 dbt_packages/
+.venv/
